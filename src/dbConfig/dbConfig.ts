@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
+const DB_NAME = "authnextjs";
+
 export async function connect() {
   try {
-    mongoose.connect(process.env.MONGO_URI!);
+    await mongoose.connect(`${process.env.MONGO_URI}/${DB_NAME}`);
     const connection = mongoose.connection;
 
     connection.on("connected", () => {
